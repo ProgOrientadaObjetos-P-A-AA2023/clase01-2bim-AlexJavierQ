@@ -59,6 +59,7 @@ public class Ejecutor {
         miempresa.establecerCostosTotalPagoPredio();
 
         miempresa.establecerCostosBienesInmuebles();
+        miempresa.establecerCostoTotalBienes();
 
         // Imprimir el costo de los bienes inmuebles de la empresa  
         // System.out.printf("%.2f\n", miempresa.obtenerCostosBienesInmuebles());

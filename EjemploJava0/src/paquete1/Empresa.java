@@ -16,9 +16,12 @@ public class Empresa {
     private Vehiculo[] vehiculos; // tipo, matricula, valor
     private double costoBienesInmuebles;
     private double costoVehiculos;
+
+  
     private double costoTotalBienes;
     private double costoTotalPagoPredio;
 
+    
     public void establecerNombre(String m) {
         nombre = m;
     }
@@ -61,6 +64,9 @@ public class Empresa {
         costoTotalPagoPredio = suma;
     }
 
+      public void establecerCostoTotalBienes() {
+          costoTotalBienes = obtenerCostosVehiculos() + obtenerCostosBienesInmuebles();
+    }
     public String obtenerNombre() {
         return nombre;
     }
@@ -80,7 +86,10 @@ public class Empresa {
     public double obtenerCostosVehiculos() {
         return costoVehiculos;
     }
-
+   public double obtenerCostosTotalBienes() {
+        return costoTotalBienes;
+    }
+   
     @Override
     public String toString() {
         /*
@@ -137,7 +146,7 @@ public class Empresa {
                 obtenerCostosVehiculos());
         reporte = String.format("\n%sTotal Bienes: %.2f",
                 reporte,
-                obtenerCostosVehiculos() + obtenerCostosBienesInmuebles());
+                obtenerCostosTotalBienes());
         return reporte;
     }
 }
