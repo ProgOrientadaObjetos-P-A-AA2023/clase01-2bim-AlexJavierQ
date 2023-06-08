@@ -10,46 +10,63 @@ package paquete1;
  * @author reroes
  */
 public class Empresa {
-    
+
     private String nombre;
-    private Edificio [] edificios;
-    private Vehiculo [] vehiculos; // tipo, matricula, valor
+    private Edificio[] edificios;
+    private Vehiculo[] vehiculos; // tipo, matricula, valor
     private double costoBienesInmuebles;
     private double costoVehiculos;
     private double costoTotalBienes;
-    
-    public void establecerNombre(String m){
+
+    public void establecerNombre(String m) {
         nombre = m;
     }
-    
-    public void establecerEdificios(Edificio[] m){
+
+    public void establecerEdificios(Edificio[] m) {
         edificios = m;
     }
-    
-    public void establecerCostosBienesInmuebles(){
+
+    public void establecerVehiculos(Vehiculo[] v) {
+        vehiculos = v;
+    }
+
+    public void establecerCostosBienesInmuebles() {
         double suma = 0;
         for (int i = 0; i < edificios.length; i++) {
-        // for (int i = 0; i < obtenerEdificios().length; i++) {
+            // for (int i = 0; i < obtenerEdificios().length; i++) {
             suma = suma + edificios[i].obtenerCosto();
         }
-        
+
         costoBienesInmuebles = suma;
     }
-    
-    public String obtenerNombre(){
+
+    public void establecerCostosVehiculos() {
+        double suma = 0;
+        for (int i = 0; i < vehiculos.length; i++) {
+            // for (int i = 0; i < obtenerEdificios().length; i++) {
+            suma = suma + vehiculos[i].obtenerValor();
+        }
+
+        costoVehiculos = suma;
+    }
+
+    public String obtenerNombre() {
         return nombre;
     }
-    
-    public Edificio[] obtenerEdificios(){
+
+    public Edificio[] obtenerEdificios() {
         return edificios;
     }
-    
-    public double obtenerCostosBienesInmuebles(){
+
+    public double obtenerCostosBienesInmuebles() {
         return costoBienesInmuebles;
     }
     
+    public double obtenerCostosVehiculos() {
+        return costoVehiculos;
+    }
     @Override
-    public String toString(){
+    public String toString() {
         /*
         Empresa de Hojas
         Lista de Edificios
@@ -68,22 +85,41 @@ public class Empresa {
         Total de inmuebles: 71000
         
         Total bienes: 136000
-        */
-        
-        String reporte = String.format("%s\nLista de Edificio\n", 
+         */
+
+        String reporte = String.format("%s\nLista de Edificio\n",
                 obtenerNombre());
         for (int i = 0; i < edificios.length; i++) {
-            reporte = String.format("%s%d. %s (%.2f)\n", 
-                    reporte, 
-                    i+1,
-                    edificios[i].obtenerNombre().toUpperCase(), 
+            reporte = String.format("%s%d. %s (%.2f)\n",
+                    reporte,
+                    i + 1,
+                    edificios[i].obtenerNombre().toUpperCase(),
                     edificios[i].obtenerCosto());
         }
-        
-        reporte = String.format("%sTotal de inmuebles: %.2f\n", 
+
+        reporte = String.format("%sTotal de inmuebles: %.2f\n",
                 reporte,
                 costoBienesInmuebles);
-        
+
+        reporte = String.format("%s\nLista de Vehiculos\n",
+                reporte);
+
+        for (int i = 0; i < vehiculos.length; i++) {
+            reporte = String.format("%s%d. %s , %s  (%.2f)\n",
+                    reporte,
+                    i + 1,
+                    vehiculos[i].obtenerTipo(),
+            
+            vehiculos[i].obtenerMatricula(),
+            
+                    vehiculos[i].obtenerValor());
+        }
+        reporte = String.format("\n%sTotal Vehiculos: %.2f\n",
+                reporte,
+                obtenerCostosVehiculos());
+          reporte = String.format("\n%sTotal Bienes: %.2f",
+                reporte,
+                obtenerCostosVehiculos()+ costoBienesInmuebles);
         return reporte;
     }
 }

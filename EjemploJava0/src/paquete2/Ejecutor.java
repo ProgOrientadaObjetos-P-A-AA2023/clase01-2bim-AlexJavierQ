@@ -6,7 +6,7 @@
 package paquete2;
 import paquete1.Edificio;
 import paquete1.Empresa;
-
+import paquete1.Vehiculo;
 /**
  *
  * @author reroes
@@ -25,17 +25,29 @@ public class Ejecutor {
         Edificio edf4 = new Edificio("Edificio secundario");
         edf4.establecerCostos(5000);
         
+         Vehiculo v1 = new Vehiculo("Auto", "LBB0011", 10000);
+        
+        Vehiculo v2 = new Vehiculo("Camioneta","LCB0011",20000);
+        
+        Vehiculo v3=  new Vehiculo("Auto","LBD0012",6000);
+       
+        Vehiculo v4=  new Vehiculo("Camioneta","LCC0011",10000);
+
+                Vehiculo v5=  new Vehiculo("Camioneta","LDC0011",25000);
+                
         Edificio [] listaEdificios = {edf1, edf2, edf3, edf4};
         // double c = listaEdificios[2].obtenerCosto();
         //System.out.println(c);
-        
+        Vehiculo [] listaVehiculo = {v1,v2,v3,v4,v5};
         // Crear un objeto de tipo Empresa:
         //  Nombre: Empresa de Hojas
         //  Lista de edificio: edf1, edf2, edf3, edf4
         Empresa miempresa = new Empresa();
         miempresa.establecerNombre("Empresa de Hojas");
         miempresa.establecerEdificios(listaEdificios);
+        miempresa.establecerVehiculos(listaVehiculo);
         miempresa.establecerCostosBienesInmuebles();
+        miempresa.establecerCostosVehiculos();
         // Imprimir el costo de los bienes inmuebles de la empresa  
         // System.out.printf("%.2f\n", miempresa.obtenerCostosBienesInmuebles());
         System.out.printf("%s\n", miempresa);
