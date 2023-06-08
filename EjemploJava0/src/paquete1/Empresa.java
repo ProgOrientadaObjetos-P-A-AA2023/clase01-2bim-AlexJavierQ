@@ -17,6 +17,7 @@ public class Empresa {
     private double costoBienesInmuebles;
     private double costoVehiculos;
     private double costoTotalBienes;
+    private double costoTotalPagoPredio;
 
     public void establecerNombre(String m) {
         nombre = m;
@@ -50,6 +51,16 @@ public class Empresa {
         costoVehiculos = suma;
     }
 
+    public void establecerCostosTotalPagoPredio() {
+        double suma = 0;
+        for (int i = 0; i < edificios.length; i++) {
+            // for (int i = 0; i < obtenerEdificios().length; i++) {
+            suma = suma + edificios[i].obtenerCostoPredio();
+        }
+
+        costoTotalPagoPredio = suma;
+    }
+
     public String obtenerNombre() {
         return nombre;
     }
@@ -61,10 +72,15 @@ public class Empresa {
     public double obtenerCostosBienesInmuebles() {
         return costoBienesInmuebles;
     }
-    
+
+    public double obtenerCostosTotalPagoPredio() {
+        return costoTotalPagoPredio;
+    }
+
     public double obtenerCostosVehiculos() {
         return costoVehiculos;
     }
+
     @Override
     public String toString() {
         /*
@@ -90,17 +106,21 @@ public class Empresa {
         String reporte = String.format("%s\nLista de Edificio\n",
                 obtenerNombre());
         for (int i = 0; i < edificios.length; i++) {
-            reporte = String.format("%s%d. %s (%.2f)\n",
+            reporte = String.format("%s%d. %s (%.2f) (%.2f)\n",
                     reporte,
                     i + 1,
                     edificios[i].obtenerNombre().toUpperCase(),
-                    edificios[i].obtenerCosto());
+                    edificios[i].obtenerCosto(),
+                    edificios[i].obtenerCostoPredio());
         }
 
         reporte = String.format("%sTotal de inmuebles: %.2f\n",
                 reporte,
                 costoBienesInmuebles);
-
+        
+        reporte = String.format("%sTotal del pago del Predio: %.2f\n",
+                reporte,
+                costoTotalPagoPredio);
         reporte = String.format("%s\nLista de Vehiculos\n",
                 reporte);
 
@@ -109,17 +129,15 @@ public class Empresa {
                     reporte,
                     i + 1,
                     vehiculos[i].obtenerTipo(),
-            
-            vehiculos[i].obtenerMatricula(),
-            
+                    vehiculos[i].obtenerMatricula(),
                     vehiculos[i].obtenerValor());
         }
-        reporte = String.format("\n%sTotal Vehiculos: %.2f\n",
+       reporte = String.format("\n%sTotal Vehiculos: %.2f\n",
                 reporte,
                 obtenerCostosVehiculos());
-          reporte = String.format("\n%sTotal Bienes: %.2f",
+        reporte = String.format("\n%sTotal Bienes: %.2f",
                 reporte,
-                obtenerCostosVehiculos()+ costoBienesInmuebles);
+                obtenerCostosVehiculos() + obtenerCostosBienesInmuebles());
         return reporte;
     }
 }
